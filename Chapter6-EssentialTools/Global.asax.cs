@@ -16,6 +16,8 @@ namespace EssentialTools
         {
             AreaRegistration.RegisterAllAreas();
 
+            DependencyResolver.SetResolver(new Infrastructure.NinjectDependencyResolver());
+
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

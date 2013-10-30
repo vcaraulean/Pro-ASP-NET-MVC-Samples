@@ -1,4 +1,5 @@
 ﻿using EssentialTools.Models;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,13 @@ namespace EssentialTools.Controllers
 {
     public class HomeController : Controller
     {
+        IValueCalculator calculator;
+
+        public HomeController(IValueCalculator calculator)
+        {
+            this.calculator = calculator;
+        }
+
         private Product[] products = {
                 new Product { Name = "Kayak", Price = 275M},
                 new Product { Name = "Lifejacket", Price = 48.95M},
@@ -20,7 +28,6 @@ namespace EssentialTools.Controllers
 
         public ActionResult Index()
         {
-            var calculator = new LinqValueCalculator();
             var cart = new ShoppingCart(calculator) { Products = products };
             var totalValuee = cart.CalculateProductTotal();
             return View(totalValuee);
