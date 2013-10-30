@@ -23,7 +23,16 @@ namespace EssentialTools.Models
         public decimal ApplyDiscount(decimal total)
         {
             var discount = total > 100 ? 70 : 25;
-            return (total - (discount / 100m * total);
+            return (total - (discount / 100m * total));
         }
     }
+
+    public class MinimumDiscountHelper : IDiscountHelper
+    {
+        public decimal ApplyDiscount(decimal total)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
 }
